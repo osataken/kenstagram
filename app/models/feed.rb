@@ -1,10 +1,10 @@
 class Feed < ActiveRecord::Base
 	belongs_to :user
-	has_attached_file :attachment, styles: {
-    	thumb: '100x100>',
-    	square: '200x200#',
-    	medium: '300x300>'
-  	}
+	has_attached_file :attachment, {
+    	:url => "/:class/:attachment/:id_partition/:style/:hash",
+    	:hash_secret => "kenstahash"
+	}
+
 
   	do_not_validate_attachment_file_type :attachment
 

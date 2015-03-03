@@ -11,4 +11,10 @@ class Feed < ActiveRecord::Base
 	validates_presence_of :user
 	validates :content, :presence => true
 	validates :user_id, :presence => true
+
+	attr_accessor :attachment_url
+
+	def attachment_url
+		@attachment.url
+	end
 end

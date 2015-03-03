@@ -12,7 +12,7 @@ gem 'spring', :group => :development
 gem 'pg'
 
 gem 'paperclip'
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 
 gem 'rails_12factor'
 

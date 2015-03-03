@@ -13,6 +13,6 @@ class Feed < ActiveRecord::Base
 	validates :user_id, :presence => true
 
 	def attachment_url
-		attachment.url(:medium)
+		attachment.url(:original)
 	end
 end

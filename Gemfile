@@ -8,7 +8,10 @@ gem 'rails-api'
 gem 'spring', :group => :development
 
 
-#gem 'sqlite3'
+group :development, :test do
+   gem 'sqlite3'
+end
+
 gem 'pg'
 
 gem 'paperclip'

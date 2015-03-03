@@ -6,7 +6,7 @@ class FeedsController < ApplicationController
   def index
     @feeds = Feed.all
 
-    render json: @feeds
+    render json: @feeds.to_json(:methods => [:attachment_url])
   end
 
   # GET /feeds/1

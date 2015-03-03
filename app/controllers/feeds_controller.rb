@@ -12,6 +12,8 @@ class FeedsController < ApplicationController
   # GET /feeds/1
   # GET /feeds/1.json
   def show
+
+    p @feed.attachment.inspect
     render json: @feed
   end
 

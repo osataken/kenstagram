@@ -17,7 +17,8 @@ production:
   :storage: :s3
   :bucket: "kenstagram"
   :path: "/:class/:attachment/:id_partition/:style/:filename"
-  :url: "s3-website-ap-southeast-1.amazonaws.com"
+  :url: "s3-website-ap-southeast-1.amazonaws.com",
+  :s3_host_name: "s3-website-ap-southeast-1.amazonaws.com"
 
 test:
   <<: *common

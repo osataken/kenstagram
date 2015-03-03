@@ -14,7 +14,7 @@ gem 'pg'
 gem 'paperclip'
 gem 'aws-sdk'
 
-
+gem 'rails_12factor'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

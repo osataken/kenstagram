@@ -1,7 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  content: MyString
-
-two:
-  content: MyString
+normal_feed:
+  content: test_content1
+  user: normal_user

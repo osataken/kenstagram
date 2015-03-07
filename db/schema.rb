@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150302133649) do
+ActiveRecord::Schema.define(version: 20150307153318) do
 
   create_table "feeds", force: :cascade do |t|
     t.string   "content"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150302133649) do
     t.string   "encrypted_password"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.string   "api_key"
   end
 
 end

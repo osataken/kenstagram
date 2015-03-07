@@ -18,3 +18,4 @@
 
 # ignore all uploaded images
 /public/system
+/public/feeds

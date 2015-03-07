@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate, only: [:update, :destroy]
   before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /users
@@ -23,7 +24,7 @@ class UsersController < ApplicationController
     if @user.save
       render json: @user, status: :created, location: @user
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: {:error => "Invalid Request"}.to_json, status: :unprocessable_entity
     end
   end
 
@@ -35,7 +36,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       head :no_content
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: {:error => "Invalid Request"}.to_json, status: :unprocessable_entity
     end
   end
 

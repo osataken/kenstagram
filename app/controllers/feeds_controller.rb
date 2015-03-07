@@ -1,11 +1,11 @@
 class FeedsController < ApplicationController
+  before_action :authenticate
   before_action :set_feed, only: [:show, :update, :destroy]
 
   # GET /feeds
   # GET /feeds.json
   def index
-    @feeds = Feed.all
-
+    @feeds = Feed.order("created_at DESC").limit(10)
     render json: @feeds.to_json(:methods => [:attachment_url])
   end
 
@@ -25,7 +25,7 @@ class FeedsController < ApplicationController
     if @feed.save
       render json: @feed, status: :created, location: @feed
     else
-      render json: @feed.errors, status: :unprocessable_entity
+      render json: {:error => "Invalid Request"}.to_json, status: :unprocessable_entity
     end
   end
 
@@ -37,7 +37,7 @@ class FeedsController < ApplicationController
     if @feed.update(feed_params)
       head :no_content
     else
-      render json: @feed.errors, status: :unprocessable_entity
+      render json: {:error => "Invalid Request"}.to_json, status: :unprocessable_entity
     end
   end
 

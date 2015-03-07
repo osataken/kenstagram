@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
-    render json: @users
+    render json: @users, :except=>[:encrypted_password, :api_key, :email]
   end
 
   # GET /users/1
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      render json: @user, status: :created, location: @user
+      render json: @user, :except=>[:encrypted_password], status: :created, location: @user
     else
       render json: {:error => "Invalid Request"}.to_json, status: :unprocessable_entity
     end
@@ -55,6 +55,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:username, :email, :password)
+      params.require(:user).permit(:email, :password)
     end
 end

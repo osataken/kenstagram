@@ -6,15 +6,13 @@ class FeedsController < ApplicationController
   # GET /feeds.json
   def index
     @feeds = Feed.order("created_at DESC").limit(10)
-    render json: @feeds.to_json(:methods => [:attachment_url])
+    render json: @feeds.to_json(:methods => [:attachment_url], :except=>[:attachment_file_name])
   end
 
   # GET /feeds/1
   # GET /feeds/1.json
   def show
-
-    p @feed.attachment.inspect
-    render json: @feed
+    render json: @feed.to_json(:methods => [:attachment_url], :except=>[:attachment_file_name])
   end
 
   # POST /feeds
@@ -23,7 +21,7 @@ class FeedsController < ApplicationController
     @feed = Feed.new(feed_params)
 
     if @feed.save
-      render json: @feed, status: :created, location: @feed
+      render json: @feed.to_json(:methods => [:attachment_url], :except=>[:attachment_file_name]), status: :created, location: @feed
     else
       render json: {:error => "Invalid Request"}.to_json, status: :unprocessable_entity
     end

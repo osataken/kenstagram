@@ -24,7 +24,7 @@ class FeedsControllerTest < ActionController::TestCase
 
     assert_not_nil(response_json['created_at'])
     assert_not_nil(response_json['updated_at'])
-    assert_not_nil(response_json['attachment_file_name'])
+    assert_not_nil(response_json['attachment_url'])
     assert_not_nil(response_json['attachment_content_type'])
     assert_not_nil(response_json['attachment_file_size'])
     assert_not_nil(response_json['attachment_updated_at'])

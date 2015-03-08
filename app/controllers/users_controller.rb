@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     if @user.id != @login_user.id
       render json: {:error => "You are not authorized to update this user"}.to_json, status: :unauthorized
     else 
-      if @user.update(user_params)
+      if @user.update(user_update_params)
         head :no_content
       else
         render json: {:error => "Invalid Request"}.to_json, status: :unprocessable_entity
@@ -59,5 +59,9 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:username, :email, :password)
+    end
+
+    def user_update_params
+      params.require(:user).permit(:email)
     end
 end

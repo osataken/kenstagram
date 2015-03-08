@@ -32,11 +32,14 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     @user = User.find(params[:id])
-
-    if @user.update(user_params)
-      head :no_content
-    else
-      render json: {:error => "Invalid Request"}.to_json, status: :unprocessable_entity
+    if @user.id != @login_user.id
+      render json: {:error => "You are not authorized to update this user"}.to_json, status: :unauthorized
+    else 
+      if @user.update(user_params)
+        head :no_content
+      else
+        render json: {:error => "Invalid Request"}.to_json, status: :unprocessable_entity
+      end
     end
   end
 

@@ -4,6 +4,7 @@ class FeedsControllerTest < ActionController::TestCase
   setup do
     @user = users(:normal_user)
     @feed = feeds(:normal_feed)
+    @another_user_feed = feeds(:another_user_feed)
     @request.env['HTTP_AUTHORIZATION'] = 'Token ' + @user.api_key
   end
 
@@ -79,5 +80,14 @@ class FeedsControllerTest < ActionController::TestCase
     end
 
     assert_response 204
+  end
+
+  test "should not update feed by non-owner" do
+    put :update, id: @another_user_feed, feed: { 
+      content: "updated content", 
+      user_id: @user.id 
+    }
+    
+    assert_response 401
   end
 end

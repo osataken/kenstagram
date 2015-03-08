@@ -32,10 +32,14 @@ class FeedsController < ApplicationController
   def update
     @feed = Feed.find(params[:id])
 
-    if @feed.update(feed_params)
-      head :no_content
-    else
-      render json: {:error => "Invalid Request"}.to_json, status: :unprocessable_entity
+    if @feed.user_id != @login_user.id
+      render json: {:error => "You are not authorized to update this feed"}.to_json, status: :unauthorized
+    else 
+      if @feed.update(feed_params)
+        head :no_content
+      else
+        render json: {:error => "Invalid Request"}.to_json, status: :unprocessable_entity
+      end
     end
   end
 

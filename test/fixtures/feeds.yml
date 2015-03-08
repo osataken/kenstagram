@@ -3,3 +3,7 @@
 normal_feed:
   content: test_content1
   user: normal_user
+
+another_user_feed:
+  content: test_content_from_another_user
+  user: another_user

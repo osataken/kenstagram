@@ -3,6 +3,7 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
   setup do
     @user = users(:normal_user)
+    @another_user = users(:another_user)
     @request.env['HTTP_AUTHORIZATION'] = 'Token ' + @user.api_key
   end
 
@@ -43,5 +44,13 @@ class UsersControllerTest < ActionController::TestCase
     end
 
     assert_response 204
+  end
+
+  test "should not update user by non-owner" do
+    put :update, id: @another_user, user: { 
+      email: "testupdateemail@test.com"
+    }
+    
+    assert_response 401
   end
 end

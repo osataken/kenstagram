@@ -3,5 +3,5 @@
 normal_user:
   username: normaluser
   email: normal@email.com
-  encrypted_password: encryptedpassword
-  api_key: test_apikey
+  encrypted_password: <%= Digest::SHA1.hexdigest('encryptedpassword') %>
+  api_key: <%= SecureRandom.uuid.gsub(/\-/,'') %>
